@@ -1,4 +1,130 @@
+<!DOCTYPE HTML>
+<html lang="en">
 <head>
+    <!-- index.html -->
+    <title>I LOVE DAZA</title>
+    <meta charset="UTF-8" />
+    <style>
+        body {
+          background: white
+        }
+        section {
+            font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+            position: absolute;
+            text-align: center;
+            font-size: 1.5em;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+        section div{
+            background: black;
+            padding: 1em;
+            margin: 1em;
+            border-radius: 1em;
+            min-height: 3em;
+            max-width: 30em;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+        #message {
+            color: white;
+        }
+        .myButton {
+            box-shadow:inset 0px 1px 0px 0px black;
+            background:linear-gradient(to bottom, black 5%, #090909 100%);
+            background-color:black;
+            border-radius:6px;
+            border:1px solid #232323;
+            display:inline-block;
+            cursor:pointer;
+            color:#999999;
+            font: inherit;
+            font-weight:bold;
+            padding:6px 24px;
+            text-shadow:0px 1px 0px black;
+        }
+        .myButton:hover {
+            background:linear-gradient(to bottom, #090909 5%, black 100%);
+            background-color:#090909;
+        }
+        .myButton:active {
+            position:relative;
+            top:1px;
+        }
+    </style>
+    <script>
+        letter = "From the day I first avoided looking at you I've understated exactly how smitten I am. You make every other human I've met seem like an ugly, stupid, boring piece of shit by comparison (especially Emily if she's reading this). I'm honoured to be your first boyfriend-valentine and I will do everything to be your last!</br>Your lover,</br>Jimothy-Jamothy"
+        count = 0
+        words = {
+            "adj_good" : ["smart","funny","cute","sexy","beautiful","intelligent","pretty","confident","driven","peng","hunnit","hot","yummy"],
+            "properties" : ["eyes","hair","nose","mouth","ears","fingers","teeth","brain","mind","soul","body","aura","confidence","humour","sexiness","intelligence","ass", "thighs","curves","legs","arms","uterus","hoohah","skin","eyelashes","cheeks","tongue","talent","beauty","mom"],
+            "love" : ["love","adore","like","think about","am smitten by","can't stop thinking about", "would fuck", "am in love with"],
+            "daria" : ["Daria","Daza","my baby", "my boo", "my boob","my belle","my fancy tickler","my cow"],
+            "things_good" : ["angels","diamonds","kittens","puppies","donuts","apple products","sugar","avocado","the feeling of getting good grades","sex","a long walk on the beach","the smell of stone after rain","a newborn baby","heaven","the Weeknd's voice","a good conversation","sliced bread","being rich"],
+            "verbs_good" : ["looking at","smelling","experiencing","loving","seeing","feeling","holding","kissing","fucking","tasting","watching","admiring","knowing"],
+            "so" : ["so","very","quite","extremely","the most"]
+        }
+
+        function choose(choices) {
+            var index = Math.floor(Math.random() * choices.length);
+            return choices[index];
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        function clicked(){
+            count++
+            if (count == 10) {
+                setMessage(letter)
+            } else {
+                setMessage(generateMessage())
+            }
+        }
+
+        function setMessage(msg){
+            document.getElementById("message").innerHTML = msg
+        }
+
+        function generateMessage(){
+            you = Math.random() > 0.6 ? "you" : `your ${choose(words["properties"])}`
+            love = choose(words["love"])
+            adj_good = choose(words["adj_good"])
+            verbs_good = choose(words["verbs_good"])
+            things_good = choose(words["things_good"])
+            so = choose(words["so"])
+            daria = choose(words["daria"])
+            
+            m = Math.floor(Math.random() * 10)
+            message = ""
+            
+            if (m === 0){message=`I ${love} ${verbs_good} ${you}`}
+            else if (m === 1){ message =`I ${love} you more than I ${love} ${things_good}`}
+            else if (m === 2){ message =`${you} be so ${adj_good}`}
+            else if (m === 3){ message =`I ${love} how ${adj_good} ${you} be`}
+            else if (m === 4){ message =`${verbs_good} ${you} be like ${things_good}`}
+            else if (m === 5){ message =`${you} be ${things_good} of my life`}
+            else if (m === 6){ message =`${you} be as ${adj_good} as ${things_good}`}
+            else if (m === 7){ message =`${you} be like ${things_good}`}
+            else { message =`I ${love} ${you}`}
+
+            if (Math.random() > 0.8) {
+                message = message + `, ${daria}`
+            }
+            return capitalizeFirstLetter(message)
+        }
+    </script>
 </head>
 <body>
+    <section>
+        <h1 style="font-style: italic;">Dear Daza,</h1>
+        <div>
+            <p id="message">I love you</p>
+        </div>
+        <input class="myButton" type="button" value="Click me" onclick="clicked()">
+    </section>
 </body>
